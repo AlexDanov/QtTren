@@ -91,6 +91,8 @@ class TestSession:
             return "empty"
         if self.test.get("mode", "exercise") == "exercise" and self.is_correct(index):
             return "correct"
+        if self.test.get("mode", "exercise") != "exercise":
+            return "answered"
         return "selected"
 
     def stats(self):
@@ -112,12 +114,33 @@ class ScrollableFrame(ttk.Frame):
         self.scrollbar.pack(side="right", fill="y")
         self.content.bind("<Configure>", self._on_content_configure)
         self.canvas.bind("<Configure>", self._on_canvas_configure)
+        self.canvas.bind("<Enter>", self._bind_mousewheel)
+        self.canvas.bind("<Leave>", self._unbind_mousewheel)
 
     def _on_content_configure(self, _event):
         self.canvas.configure(scrollregion=self.canvas.bbox("all"))
 
     def _on_canvas_configure(self, event):
         self.canvas.itemconfigure(self.window_id, width=event.width)
+
+    def _bind_mousewheel(self, _event):
+        self.canvas.bind_all("<MouseWheel>", self._on_mousewheel)
+        self.canvas.bind_all("<Button-4>", self._on_mousewheel)
+        self.canvas.bind_all("<Button-5>", self._on_mousewheel)
+
+    def _unbind_mousewheel(self, _event):
+        self.canvas.unbind_all("<MouseWheel>")
+        self.canvas.unbind_all("<Button-4>")
+        self.canvas.unbind_all("<Button-5>")
+
+    def _on_mousewheel(self, event):
+        if event.num == 4:
+            delta = -1
+        elif event.num == 5:
+            delta = 1
+        else:
+            delta = -1 if event.delta > 0 else 1
+        self.canvas.yview_scroll(delta, "units")
 
 
 class QtTrenTkApp(tk.Tk):
@@ -144,6 +167,7 @@ class QtTrenTkApp(tk.Tk):
             "accent": "#6fb7ff",
             "correct": "#65d184",
             "selected": "#f0c76c",
+            "answered": "#c9d1d9",
             "empty": "#48525f",
             "button_bg": "#e5edf5",
             "button_text": "#111820",
