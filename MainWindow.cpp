@@ -387,5 +387,7 @@ QColor MainWindow::colorForState(const QString &state) const
         return QColor("#65d184");
     if (state == "selected")
         return QColor("#f0c76c");
+    if (state == "answered")
+        return QColor("#c9d1d9");
     return QColor("#48525f");
 }

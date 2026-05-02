@@ -423,6 +423,8 @@ QString TestManager::stateForCard(int index) const
         return "empty";
     if (hasCurrentTest() && m_tests.at(m_currentTest).mode == "exercise" && isCardCorrect(index))
         return "correct";
+    if (hasCurrentTest() && m_tests.at(m_currentTest).mode != "exercise")
+        return "answered";
     return "selected";
 }
 
