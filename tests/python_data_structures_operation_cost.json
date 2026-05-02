@@ -1,0 +1,503 @@
+{
+  "id": "python_data_structures_operation_cost",
+  "title": "Python: структуры данных и цена операций",
+  "description": "Учебный тест по практической работе: list, deque, set, dict, Counter, heapq, связный список и честные измерения производительности.",
+  "mode": "exercise",
+  "cards": [
+    {
+      "id": "py_cost_q01",
+      "type": "single",
+      "description": [{"type": "text", "text": "Одна и та же коллекция значений может работать быстро или медленно в зависимости от того, какие операции выполняются чаще всего."}],
+      "question": [{"type": "text", "text": "Какую главную мысль иллюстрирует практическая работа?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Производительность зависит от соответствия структуры данных профилю операций"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Любой контейнер Python одинаково быстр для любых задач"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Всегда нужно писать собственную структуру данных"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Скорость программы определяется только частотой процессора"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q02",
+      "type": "multi",
+      "description": [{"type": "text", "text": "В работе сравниваются встроенные и специализированные структуры Python."}],
+      "question": [{"type": "text", "text": "Какие структуры данных прямо рассматриваются в работе?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "list"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "deque"}]},
+        {"id": "c", "blocks": [{"type": "code", "language": "python", "text": "set"}]},
+        {"id": "d", "blocks": [{"type": "code", "language": "python", "text": "pygame.Surface"}]}
+      ],
+      "correct": ["a", "b", "c"]
+    },
+    {
+      "id": "py_cost_q03",
+      "type": "single",
+      "description": [{"type": "text", "text": "list в Python реализован как динамический массив."}],
+      "question": [{"type": "text", "text": "Какая операция является сильной стороной list?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "a[i]"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "a.pop(0)"}]},
+        {"id": "c", "blocks": [{"type": "code", "language": "python", "text": "a.insert(0, x)"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Мгновенный поиск по значению в любом случае"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q04",
+      "type": "text",
+      "description": [{"type": "code", "language": "python", "text": "a = list(range(n))\nvalue = a[i]"}],
+      "question": [{"type": "text", "text": "Какая ожидаемая асимптотическая сложность доступа list по индексу? Ответ запишите как O(...)."}],
+      "options": [],
+      "correct": "O(1)"
+    },
+    {
+      "id": "py_cost_q05",
+      "type": "single",
+      "description": [{"type": "text", "text": "В связном списке узлы связаны ссылками Node -> Node."}],
+      "question": [{"type": "text", "text": "Почему доступ к i-му элементу связного списка медленнее, чем у list?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Нужно последовательно пройти узлы от начала до нужной позиции"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "В Python запрещены ссылки между объектами"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Связный список всегда хранит только строки"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Метод append у связного списка невозможен"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q06",
+      "type": "text",
+      "description": [{"type": "code", "language": "python", "text": "def get(self, index):\n    current = self.head\n    for _ in range(index):\n        current = current.next\n    return current.value"}],
+      "question": [{"type": "text", "text": "Какая ожидаемая сложность такого доступа по индексу в связном списке? Ответ запишите как O(...)."}],
+      "options": [],
+      "correct": "O(n)"
+    },
+    {
+      "id": "py_cost_q07",
+      "type": "single",
+      "description": [{"type": "text", "text": "Операции в начале последовательности требуют разного устройства контейнера."}],
+      "question": [{"type": "text", "text": "Какая структура лучше подходит для частых appendleft и popleft?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "collections.deque"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "list"}]},
+        {"id": "c", "blocks": [{"type": "code", "language": "python", "text": "str"}]},
+        {"id": "d", "blocks": [{"type": "code", "language": "python", "text": "tuple"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q08",
+      "type": "single",
+      "description": [{"type": "code", "language": "python", "text": "a.insert(0, x)\na.pop(0)"}],
+      "question": [{"type": "text", "text": "Почему такие операции на list плохо масштабируются при больших N?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Элементы приходится сдвигать"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "list не умеет хранить числа"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Операции всегда запускают сортировку"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Python запрещает удалять первый элемент"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q09",
+      "type": "multi",
+      "description": [{"type": "text", "text": "deque является двусторонней очередью."}],
+      "question": [{"type": "text", "text": "Какие операции являются сильными сторонами deque?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "q.appendleft(x)"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "q.popleft()"}]},
+        {"id": "c", "blocks": [{"type": "code", "language": "python", "text": "q.append(x)"}]},
+        {"id": "d", "blocks": [{"type": "code", "language": "python", "text": "q[500000]  # как основной профиль нагрузки"}]}
+      ],
+      "correct": ["a", "b", "c"]
+    },
+    {
+      "id": "py_cost_q10",
+      "type": "single",
+      "description": [{"type": "text", "text": "Проверка принадлежности отвечает на вопрос: есть ли элемент x среди данных."}],
+      "question": [{"type": "text", "text": "Какая структура обычно быстрее list для проверки принадлежности?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "set"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "list"}]},
+        {"id": "c", "blocks": [{"type": "code", "language": "python", "text": "range"}]},
+        {"id": "d", "blocks": [{"type": "code", "language": "python", "text": "print"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q11",
+      "type": "text",
+      "description": [{"type": "code", "language": "python", "text": "x in data_list"}],
+      "question": [{"type": "text", "text": "Какая ожидаемая сложность проверки принадлежности в list? Ответ запишите как O(...)."}],
+      "options": [],
+      "correct": "O(n)"
+    },
+    {
+      "id": "py_cost_q12",
+      "type": "text",
+      "description": [{"type": "code", "language": "python", "text": "x in data_set"}],
+      "question": [{"type": "text", "text": "Какая ожидаемая средняя сложность проверки принадлежности в set? Ответ запишите как O(...)."}],
+      "options": [],
+      "correct": "O(1)"
+    },
+    {
+      "id": "py_cost_q13",
+      "type": "single",
+      "description": [{"type": "text", "text": "dict также основан на хеш-таблице."}],
+      "question": [{"type": "text", "text": "Что проверяет выражение x in d для словаря d?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Наличие ключа x"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Наличие значения x среди всех значений"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Размер словаря"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Отсортированность ключей"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q14",
+      "type": "multi",
+      "description": [{"type": "text", "text": "Для подсчета частот можно использовать разные подходы."}],
+      "question": [{"type": "text", "text": "Какие инструменты подходят для эффективного подсчета частот?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "dict"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "collections.Counter"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Наивный список значений и отдельный список количеств"}]},
+        {"id": "d", "blocks": [{"type": "code", "language": "python", "text": "heapq.heappop"}]}
+      ],
+      "correct": ["a", "b"]
+    },
+    {
+      "id": "py_cost_q15",
+      "type": "single",
+      "description": [{"type": "code", "language": "python", "text": "freq[x] = freq.get(x, 0) + 1"}],
+      "question": [{"type": "text", "text": "Что делает эта строка при подсчете частот?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Увеличивает счетчик элемента x на единицу"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Удаляет x из словаря"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Сортирует все ключи"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Проверяет, является ли x списком"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q16",
+      "type": "single",
+      "description": [{"type": "code", "language": "python", "text": "from collections import Counter\nfreq = Counter(data)"}],
+      "question": [{"type": "text", "text": "Почему Counter можно считать специализированной структурой для этой задачи?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Он прямо хранит частоты элементов и предоставляет удобный API для счетчиков"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Он всегда быстрее любой программы на C"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Он запрещает повторяющиеся элементы"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Он заменяет модуль time"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q17",
+      "type": "single",
+      "description": [{"type": "text", "text": "Очередь задач: новые заявки добавляются в конец, старые извлекаются из начала."}],
+      "question": [{"type": "text", "text": "Какая реализация лучше соответствует такому профилю операций?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "deque.append(x) + deque.popleft()"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "list.append(x) + list.pop(0)"}]},
+        {"id": "c", "blocks": [{"type": "code", "language": "python", "text": "str += value"}]},
+        {"id": "d", "blocks": [{"type": "code", "language": "python", "text": "tuple.pop(0)"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q18",
+      "type": "single",
+      "description": [{"type": "text", "text": "Приоритетная очередь многократно возвращает элемент с минимальным приоритетом."}],
+      "question": [{"type": "text", "text": "Какой модуль стандартной библиотеки предназначен для двоичной кучи?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "heapq"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "random"}]},
+        {"id": "c", "blocks": [{"type": "code", "language": "python", "text": "csv"}]},
+        {"id": "d", "blocks": [{"type": "code", "language": "python", "text": "tkinter"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q19",
+      "type": "multi",
+      "description": [{"type": "text", "text": "Для извлечения минимума можно использовать простой список или кучу."}],
+      "question": [{"type": "text", "text": "Какие операции соответствуют сравнению обычного списка и heapq?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "task = min(tasks)\ntasks.remove(task)"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "heapq.heappop(heap)"}]},
+        {"id": "c", "blocks": [{"type": "code", "language": "python", "text": "tasks.upper()"}]},
+        {"id": "d", "blocks": [{"type": "code", "language": "python", "text": "heapq.heapify(tasks)"}]}
+      ],
+      "correct": ["a", "b", "d"]
+    },
+    {
+      "id": "py_cost_q20",
+      "type": "single",
+      "description": [{"type": "code", "language": "python", "text": "task = min(tasks)\ntasks.remove(task)"}],
+      "question": [{"type": "text", "text": "Почему такой способ извлечения минимума из обычного списка плохо масштабируется при многократном повторении?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Каждый раз приходится линейно искать минимум и удалять элемент"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "min запрещен для чисел"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "remove всегда очищает весь список"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Список превращается в словарь"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q21",
+      "type": "single",
+      "description": [{"type": "text", "text": "Честное измерение требует уменьшать влияние шума системы."}],
+      "question": [{"type": "text", "text": "Почему не стоит измерять одну очень быструю операцию всего один раз?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Результат может оказаться сильнее связан с шумом системы, чем с операцией"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Python не умеет измерять время"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Одна операция всегда занимает ровно 0 секунд"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Так можно измерять только строки"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q22",
+      "type": "multi",
+      "description": [{"type": "text", "text": "В работе сформулированы правила честного эксперимента."}],
+      "question": [{"type": "text", "text": "Какие действия помогают измерять честнее?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Повторять опыт несколько раз"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Брать медиану или минимальное время из серии"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Генерировать исходные данные заранее"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Печатать данные внутри измеряемого участка"}]}
+      ],
+      "correct": ["a", "b", "c"]
+    },
+    {
+      "id": "py_cost_q23",
+      "type": "single",
+      "description": [{"type": "code", "language": "python", "text": "from time import perf_counter\nfrom statistics import median"}],
+      "question": [{"type": "text", "text": "Зачем в шаблоне измерений используется median(times)?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Чтобы получить более устойчивую оценку серии измерений"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Чтобы отсортировать исходные данные"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Чтобы заменить цикл for"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Чтобы вывести таблицу в Excel"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q24",
+      "type": "single",
+      "description": [{"type": "text", "text": "print внутри измеряемого участка резко меняет смысл эксперимента."}],
+      "question": [{"type": "text", "text": "Почему не нужно выводить данные на экран во время измерения операции?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Вывод на экран сам по себе дорогой и искажает результат"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "print удаляет список"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "print отключает сборщик мусора навсегда"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "print нельзя использовать в Python 3"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q25",
+      "type": "single",
+      "description": [{"type": "text", "text": "Сравнивать нужно операции с одинаковым смыслом."}],
+      "question": [{"type": "text", "text": "Какое сравнение корректно для модели очереди?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "list.pop(0)  против  deque.popleft()"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "list.sort()  против  print(deque)"}]},
+        {"id": "c", "blocks": [{"type": "code", "language": "python", "text": "set.add(x)  против  heapq.heappop(heap)"}]},
+        {"id": "d", "blocks": [{"type": "code", "language": "python", "text": "dict.keys()  против  input()"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q26",
+      "type": "multi",
+      "description": [{"type": "text", "text": "Дополнительные эксперименты помогают понять границы применимости структур."}],
+      "question": [{"type": "text", "text": "Какие дополнительные сравнения предложены в работе?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Удаление дубликатов через ручной список, set, dict.fromkeys"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Линейный и бинарный поиск"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Поддержание отсортированной последовательности"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Сравнение цвета фона IDE"}]}
+      ],
+      "correct": ["a", "b", "c"]
+    },
+    {
+      "id": "py_cost_q27",
+      "type": "single",
+      "description": [{"type": "text", "text": "dict.fromkeys может использоваться для удаления дубликатов с сохранением порядка появления ключей в современных версиях Python."}],
+      "question": [{"type": "text", "text": "Какой главный вопрос есть у эксперимента про удаление дубликатов?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Что быстрее и как сохранить порядок"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Как отключить хеширование во всех структурах"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Как сделать tuple изменяемым"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Как заменить Python на HTML"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q28",
+      "type": "single",
+      "description": [{"type": "text", "text": "Для поиска можно заранее подготовить данные: отсортировать список или построить set."}],
+      "question": [{"type": "text", "text": "Когда предварительная подготовка данных обычно окупается?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Когда после подготовки выполняется много запросов"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Когда нужен ровно один простой запрос"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Когда запрещено хранить данные"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Когда измерение содержит print"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q29",
+      "type": "single",
+      "description": [{"type": "text", "text": "Поддерживать отсортированность можно онлайн или собрать данные и отсортировать позже."}],
+      "question": [{"type": "text", "text": "Какой вопрос иллюстрирует сравнение append+sort, bisect.insort и «собрать всё и sort один раз»?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Чем batch-режим отличается от online-режима"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Почему set хранит порядок сортировки"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Как заменить все числа строками"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Почему нельзя использовать list"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q30",
+      "type": "single",
+      "description": [{"type": "text", "text": "Стек добавляет и извлекает элементы с одного конца."}],
+      "question": [{"type": "text", "text": "Почему обычный list часто достаточен для стека?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "code", "language": "python", "text": "list.append(x)\nlist.pop()"}]},
+        {"id": "b", "blocks": [{"type": "code", "language": "python", "text": "list.insert(0, x)\nlist.pop(0)"}]},
+        {"id": "c", "blocks": [{"type": "code", "language": "python", "text": "list.index(x)\nlist.remove(x)"}]},
+        {"id": "d", "blocks": [{"type": "code", "language": "python", "text": "print(list)"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q31",
+      "type": "multi",
+      "description": [{"type": "text", "text": "Графики помогают увидеть зависимость времени от N."}],
+      "question": [{"type": "text", "text": "Какие требования к визуализации указаны в работе?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "По оси X показывать N"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "По оси Y показывать время выполнения"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Показывать 2-3 варианта на одном графике для эксперимента"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Удалять подписи с графиков"}]}
+      ],
+      "correct": ["a", "b", "c"]
+    },
+    {
+      "id": "py_cost_q32",
+      "type": "single",
+      "description": [{"type": "text", "text": "Иногда один вариант настолько медленный, что остальные линии на графике почти неразличимы."}],
+      "question": [{"type": "text", "text": "Что можно сделать в такой ситуации?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Построить второй график без медленного варианта или использовать логарифмическую шкалу"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Удалить быстрые варианты из таблицы измерений"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Поменять единицы N на случайные строки"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Запретить повторные измерения"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q33",
+      "type": "single",
+      "description": [{"type": "text", "text": "Асимптотическая сложность описывает рост при увеличении размера входа, но реальные измерения зависят от деталей реализации и окружения."}],
+      "question": [{"type": "text", "text": "Что важно понимать при сравнении асимптотики и реальных измерений?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Асимптотика объясняет форму роста, а измерения показывают практический эффект на конкретных N"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Асимптотика всегда дает точное время в секундах"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Реальные измерения не нужны никогда"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "O(1) означает, что операция занимает ноль секунд"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q34",
+      "type": "single",
+      "description": [{"type": "text", "text": "set быстрее list для принадлежности благодаря хеш-поиску в среднем случае."}],
+      "question": [{"type": "text", "text": "Что означает «быстро в среднем» для set/dict?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Обычно операция близка к O(1), но модель зависит от хеширования и коллизий"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Операция гарантированно занимает ровно одну наносекунду"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Операция всегда медленнее list"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Операция работает только для отсутствующих элементов"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q35",
+      "type": "single",
+      "description": [{"type": "text", "text": "Иногда list лучше set, несмотря на более медленную проверку принадлежности."}],
+      "question": [{"type": "text", "text": "В какой ситуации list может быть предпочтительнее set?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Когда важны порядок, индексы или повторяющиеся элементы"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Когда нужно запретить дубликаты"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Когда нужна только проверка принадлежности среди миллионов элементов"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Когда требуется хеш-таблица"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q36",
+      "type": "multi",
+      "description": [{"type": "text", "text": "Итоговый отчет должен показывать не только числа, но и понимание причин."}],
+      "question": [{"type": "text", "text": "Что нужно сдать по практической работе?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Python-файл с кодом экспериментов"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Таблицу измерений"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Графики и краткий отчет"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Только скриншот рабочего стола"}]}
+      ],
+      "correct": ["a", "b", "c"]
+    },
+    {
+      "id": "py_cost_q37",
+      "type": "multi",
+      "description": [{"type": "text", "text": "Критерии оценивания включают корректность экспериментов, честность измерений и качество выводов."}],
+      "question": [{"type": "text", "text": "Какие пункты действительно оцениваются?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Корректность обязательных экспериментов"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Понятность таблиц и графиков"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Связь между операцией, структурой и сложностью"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Количество декоративных картинок"}]}
+      ],
+      "correct": ["a", "b", "c"]
+    },
+    {
+      "id": "py_cost_q38",
+      "type": "single",
+      "description": [{"type": "text", "text": "Выводы должны объяснять форму графиков, а не только называть победителя."}],
+      "question": [{"type": "text", "text": "Какой вывод считается более инженерным?"}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "deque выигрывает для очереди, потому что операции на левом конце не требуют сдвига всех элементов"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "deque победил, потому что его линия красивее"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "list плохой всегда и его нельзя использовать"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "set быстрее, значит память не имеет значения"}]}
+      ],
+      "correct": "a"
+    },
+    {
+      "id": "py_cost_q39",
+      "type": "text",
+      "description": [{"type": "text", "text": "В отчете нужно сформулировать общее правило выбора структуры данных."}],
+      "question": [{"type": "text", "text": "Какую структуру стоит выбрать, если нужно многократно извлекать минимум? Ответ одним словом/именем модуля."}],
+      "options": [],
+      "correct": "heapq"
+    },
+    {
+      "id": "py_cost_q40",
+      "type": "multi",
+      "description": [{"type": "text", "text": "Итоговое правило связывает задачу со структурой данных."}],
+      "question": [{"type": "text", "text": "Выберите корректные пары «задача -> структура»."}],
+      "options": [
+        {"id": "a", "blocks": [{"type": "text", "text": "Частые обращения по индексу -> list"}]},
+        {"id": "b", "blocks": [{"type": "text", "text": "Очередь с извлечением из начала -> deque"}]},
+        {"id": "c", "blocks": [{"type": "text", "text": "Быстрая проверка принадлежности -> set"}]},
+        {"id": "d", "blocks": [{"type": "text", "text": "Подсчет частот -> print"}]}
+      ],
+      "correct": ["a", "b", "c"]
+    }
+  ]
+}
