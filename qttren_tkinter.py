@@ -426,13 +426,13 @@ class QtTrenTkApp(tk.Tk):
         for index, _card in enumerate(self.session.cards):
             state = self.session.state_for_card(index)
             border = "#ffffff" if index == self.session.current_card_index and not self.session.finished else "#222931"
-            button = tk.Button(self.progress_frame, text=str(index + 1), width=3,
-                               bg=self.colors[state], fg="#101820", activebackground=self.colors[state],
-                               relief="flat", highlightthickness=2, highlightbackground=border,
-                               font=("Segoe UI", 10, "bold"),
-                               command=lambda i=index: self.select_card(i))
-            button.pack(side="left", padx=(0, 7))
-            self.progress_buttons.append(button)
+            square = tk.Label(self.progress_frame, text=str(index + 1), width=3,
+                              bg=self.colors[state], fg="#101820",
+                              relief="flat", highlightthickness=2, highlightbackground=border,
+                              font=("Segoe UI", 10, "bold"), cursor="hand2")
+            square.bind("<Button-1>", lambda _event, i=index: self.select_card(i))
+            square.pack(side="left", padx=(0, 7), ipadx=3, ipady=6)
+            self.progress_buttons.append(square)
 
     def _rebuild_card(self):
         for child in self.card_scroll.content.winfo_children():
